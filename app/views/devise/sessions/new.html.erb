@@ -1,0 +1,73 @@
+
+<div class="container" style="height: 100vh">
+  <div style="margin-top:20px"></div>
+
+  <div class="alert alert-info alert-dismissible" role="alert" style="width:90%;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Sign in</strong> using any of this login credentials!  (<strong>Note: Each role has it's own abilities</strong>) <br>  <br>
+    <div class="row">
+      <div class="col-md-3">
+        <h4 class="text-center">Admin</h4>
+        - Email : admin@gmail.com <br>
+        - Password : admin123
+      </div> 
+      <div class="col-md-3">
+        <h4 class="text-center">Organizer</h4>
+        - Email : organizer@gmail.com <br>
+        - Password : organ123
+      </div> 
+      <div class="col-md-3">
+        <h4 class="text-center">Venue Owner</h4>
+        - Email : venueowner@gmail.com <br>
+        - Password : venue123
+      </div> 
+      <div class="col-md-3">
+        <h4 class="text-center">User</h4>
+        - Email : user@gmail.com <br>
+        - Password : user123
+      </div> 
+    </div>
+               
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="jumbotron jumbotron-login text-center">
+            <h1>Eventify</h1>
+            <p>Event Management Simplified</p>
+            <p><a class="btn btn-primary btn-lg" href="/users/sign_up" role="button">Register for free</a></p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <h2>Log in</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="form-group">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn btn-success" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  
+  
+</div>

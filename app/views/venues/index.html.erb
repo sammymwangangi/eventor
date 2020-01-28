@@ -1,0 +1,78 @@
+	
+<div class="jumbotron jumbotron-venues"  >
+  <div class="container">
+    <div class="mt-10">
+		<div class="page-header text-center">
+			<p>
+				<% if params[:search] == nil %>
+					<h3>All Venues</h3>
+				<% else %>
+					<h3>Venues with "<%= params[:search] %>" : </h3>
+				<% end %>
+			</p>
+		</div>
+		<div class="text-center">
+			<h4><% if can? :my_events, Event.new %>
+				Goto <%= link_to "My Events", events_my_events_path %>  
+				<%end%>
+				<% if can? :create, Event.new %>
+					or <%= link_to "Create Event", new_event_path, class: "btn btn-info" %>
+				<% end %>
+			</h4>
+			
+		</div>
+
+		<div class="d-flex justify-content-center">
+			<%= form_tag(events_path, method: "get", class: "form-inline my-2 my-lg-0") do %>
+				<%= text_field_tag :search, params[:search], prompt: "Enter a keyword...", class: "form-control mr-sm-2" %>
+				<%= submit_tag "Search",class: "btn btn-outline-success my-2 my-sm-0" %>
+			<% end %>
+		</div>
+	</div>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+	
+	<%= render 'tab' %>
+
+<div class="row">
+	<% @venues.each do |venue|%>
+	<div class="col-6 col-md-4">
+		<div class="card text-center" style="width: 18rem;">
+		  	<%= link_to image_tag(venue.avatar.url , class: 'card-img-top'), venue_path(venue) %>
+		  	<div class="card-body">
+				<h4 class="card-title"><%= link_to "#{venue.name}", venue_path(venue) %></h4>
+	        
+				<div class="row">
+					<div class="col-md-8">
+						<p><%= venue.locality.city.name %></p>
+					</div>
+					<div class="col-md-4">
+						<p>
+							<%= link_to venue_path(venue) do%>
+								<i class="fa fa-eye"></i>
+							<%end%>
+							<% if can? :update, venue %>
+								<%= link_to edit_venue_path(venue) do %>
+									<i class="fa fa-pencil"></i>
+								<%end%>
+								<%= link_to venue_path(venue), method: :delete, data: {confirm: "Are you sure?"} do %>
+									<i class="fa fa-trash"></i>
+								<%end%>	
+							<% end %>
+						</p>
+					</div>
+				</div>
+
+				<button class="btn btn-sm btn-secondary disabled"> <small><%= venue.seats %> seats</small></button>
+				<a href="/venues/<%= "#{venue.id}" %>" class="btn btn-danger btn-sm " role="button" style="border: none; color: white;">Book Venue</a>
+		  </div>
+		</div>
+	</div>
+	<%end%>
+</div>
+</div>

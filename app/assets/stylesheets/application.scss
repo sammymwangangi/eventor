@@ -1,0 +1,71 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+// @import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.card-padding {
+    padding: 2px 16px;
+}
+
+
+
+// .navbar {
+//     margin-bottom: 0;
+//     border-radius: 0;
+//     border: 0;
+//     color: white;
+//     font-weight: bold;
+//     /*text-shadow: 0.25px 0.25px #07A0C3;*/
+
+//    }
+
+.navbar-brand {
+	padding: 0;
+}
+
+.navbar-brand > img {
+    
+    width: 150px;
+}
+
+// ul.nav a:hover { 
+//     color: #fff !important; 
+// }
+
+// .top-wrap {
+//     background: #477998;
+//     padding-top: 50px;
+// }
+
+/* blue - #086788 
+    red- DD1C1A
+*/

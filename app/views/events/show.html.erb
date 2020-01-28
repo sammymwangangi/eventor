@@ -1,0 +1,148 @@
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><%= link_to "Events", events_path %></li>
+		<li class="breadcrumb-item active" aria-current="page"><%= link_to @event.name, event_path(@event) %></li>
+	</ol>
+</nav>
+<div class="container">
+	
+	<h2><%= @event.name %><sup> <small> <em> <%= @event.status %></em></small></sup></h2>
+
+	<div class="row">
+		<div class="col-md-7" >
+			<!-- carousel starts here -->
+			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+			      <%= image_tag(@event.avatar.url, height: "400px") if @event.avatar %>
+			      <div class="carousel-caption">
+			       Image 1
+			      </div>
+			    </div>
+			    <div class="carousel-item">
+			      <%= image_tag(@event.avatar.url, height: "400px") if @event.avatar %>
+			      <div class="carousel-caption">
+			        Image 2
+			      </div>
+			    </div>
+				<div class="carousel-item">
+			      <%= image_tag(@event.avatar.url, height: "400px") if @event.avatar %>
+			      <div class="carousel-caption">
+			        Image 2
+			      </div>
+			    </div>  
+			  </div>
+
+			  <!-- Controls -->
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    			<span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			  </a>
+			</div>
+			<!-- carousel ends here -->		
+		</div> 
+
+		<div class="col-md-5">
+			<% if params[:booking_id] %>
+			<div class="alert alert-success text-center">
+				<h3>Booked successfully! <br> Total Price : <b>KSH. <%= @booking_confirmed.total_price %></b></h3> <br>
+			</div>
+			<%end %>
+
+			<b><%= @event.description %> </b><br/>
+			<b>Venue : </b> <%= link_to "#{@event.venue.name}", venue_path(@event.venue) %> <br>
+			<b>Starting from :</b> <%= @event.start_datetime.strftime("%d %B %Y - %I:%M %P ") %> <br/>
+			<b>Ending at :</b> <%= @event.end_datetime.strftime("%d %B %Y - %I:%M %P ") %>
+
+			<div >
+			<% if can? :create, @event_booking %>
+			<div class="well" style="width:50%">
+				
+				<h3 style="margin-top:5px">Buy Tickets</h3>
+				<b>Entry fee :</b> KSH.<%= @event.entry_fee %> <br/>
+				<%= form_for([@event,@event_booking]) do |f|  %>
+					
+					<% @event_booking.tickets = 0 %>
+					<%= f.label "Choose no of tickets" %>
+					<%= f.select :tickets, [1,2,3,4,5,6,7,8,9,10] %> 
+				
+					<% @event_booking.total_price = @event.entry_fee * @event_booking.tickets %>
+				 
+					<%= f.submit "Book" , class: "btn btn-danger"%> <br>
+					
+				<% end %>	
+			</div>
+			<% end %>
+
+			<div>
+				
+				<h3>
+					Tickets Left:
+					<span class="alert alert-info"><%= @event.tickets_left %></span>	
+				</h3>
+			</div>
+		</div>
+		</div>
+
+		
+	</div>
+	
+	<div class="row">
+		<div class="col-md-8">
+			<% if can? :update, @event.event_bookings.first %>
+			<h3>Bookings</h3>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>User</th>
+						<th>Email</th>
+						<th>Tickets Booked</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% 	i = 1
+						sum = 0
+						tickets = 0 %>
+					<% @event_bookings.each do |booking| %>
+					<tr>
+						<td><%= i %></td>
+						<td><%= booking.user.username %></td>
+						<td><%= booking.user.email %></td>
+						<td><%= booking.tickets %></td>
+						<td>KSH. <%= booking.total_price %></td>
+						<% 	i += 1
+							sum += booking.total_price 
+							tickets += booking.tickets %>
+					</tr>
+					<%end %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>Total Tickets : <b><%= tickets %></b></td>
+						<td><b>KSH. <%= sum %></b></td>
+					</tr>
+				</tbody>
+			</table>
+			<% end %>
+					
+		</div>
+	</div>
+	
+</div>
+

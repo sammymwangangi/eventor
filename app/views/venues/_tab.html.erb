@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs" >
+	<li class="nav-item"> 
+    <a class="nav-link active" href="/events">Home</a>
+  </li>
+	
+	<% if can? :my_events, Event.new %>
+		<li class="nav-item"> 
+      <a class="nav-link" href="/events/my_events">My Events</a>
+    </li>
+	<%end%>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Categories
+    </a>
+    <div class="dropdown-menu">
+      <% @categories.each do |category| %>
+        <%= link_to category.name.capitalize, category_path(category), :class => "dropdown-item" %>
+      <% end %>
+    </div>
+  </li>
+</ul>

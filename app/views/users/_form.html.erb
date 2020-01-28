@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-body p-3" style="padding: 10px">
+        <%= form_for @user, html: {class: "form"} do |f| %>
+
+            <% if @user.errors.any? %>
+                <div class="alert alert-danger">
+                    <h3>These errors prohibited the form from being created:</h3>
+                    <ul>
+                        <% @user.errors.full_messages.each do |msg| %>
+                        <li><%= msg%></li>
+                        <% end %>
+                    </ul>			
+                </div>	
+            <% end %>
+
+            <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: "form-control" %>		
+            </div>
+
+            <div class="form-group">
+                <%= f.label :password %>
+                <%= f.text_field :password, class: "form-control" %>		
+            </div>
+
+            <div class="form-group">
+                <%= f.label :roles %>
+                <%= f.collection_check_boxes :role_ids, Role.all, :id, :name, class: "form-control" %>		
+            </div>
+
+            <%= f.submit "Submit", class: "btn btn-success"%>
+
+        <% end %>
+    </div>
+</div>

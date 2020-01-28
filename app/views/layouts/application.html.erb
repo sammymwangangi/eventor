@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eventify</title>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://www.google.com/jsapi" %>
+  
+  <%= csrf_meta_tags %>
+</head>
+
+
+<% if [events_path,venues_path,events_my_events_path].include? request.fullpath%>
+  <body>
+<%elsif current_page? "/categories/#{params[:id]}"%>
+  <body>
+<%else%>
+  <body >
+<%end%>
+  
+
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <a class="navbar-brand" href="/events">
+        <%= image_tag('eventify_logo2.png', width: "95px", class: "img-responsive")  %>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item mr-4">
+            <%= link_to events_path do%>
+              Events <sup><span class="badge badge-info rounded-circle"><%= Event.all.size %></span></sup>
+            <%end%>
+          </li>
+          <li class="nav-item  mr-4">
+            <%= link_to venues_path do %>
+              Venues <sup><span class="badge badge-info rounded-circle"><%= Venue.all.size %></span></sup>
+            <%end%>  
+          </li>
+          <li class="nav-item  mr-4">
+              <a href="#">Service Providers <sup><span class="badge badge-info rounded-circle">4</span></sup></a>
+          </li>
+          <li class="nav-item  mr-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#infoModal">
+              About
+            </button>
+          </li>
+
+          <% if notice %>
+            <li class="nav-item">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <b style="color:#03CEA4"><%= notice %></b>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </li>
+          <%end%>
+
+          <% if alert %>
+            <li class="nav-item">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <b style="color:#FB4D3D"><%= alert %></b>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </li>
+          <%end%>
+
+        </ul>
+
+        
+        <ul class="navbar-nav ml-auto">
+          <% if !user_signed_in? %>
+            <li class="nav-item mr-4"><%= link_to "Login", new_user_session_path %></li>
+            <li class="nav-item mr-4"><%= link_to "Register", new_user_registration_path %></li>
+          <% else %>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= current_user.username %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="navbarDropdown">
+                <%= link_to "Account Setting", edit_user_registration_path, :class => "dropdown-item" %>
+                <%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "dropdown-item" %>
+                <% if can? :manage, User %>
+                  <a href="/admin/users" class="dropdown-item">Users</a>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+    <%= yield %>
+</div>
+
+
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <p>Copyright © 2020 Eventify. All rights reserved.</p>
+    </div>
+    <div class="col-md-6">
+      <p>Created with <span role='img'>❤</span> by Anderson King'ori @ <a href="https://www.meru.ac.ke" target="_blank">Meru University</a></p>
+    </div>
+  </div>
+</div>
+
+
+<%= render 'layouts/info' %>
+
+</body>
+</html>
