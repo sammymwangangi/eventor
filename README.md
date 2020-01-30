@@ -1,14 +1,13 @@
-## Eventify
-#### [Github](https://github.com/aswinsanakan/eventify) | [Demo](https://eventifyweb.herokuapp.com/)
-An event management web application made in Rails 4 from scratch. <br>
-Roles : Event Organiser, Venue Owner and Normal Users.
+## Eventor
 
-![Eventify Screenshot](screenshot.png)
+An event management web application made in Rails from scratch. <br>
+Roles : Event Organiser, Venue Owner, Service Provider and Normal Users.
+
 
 #### Setup:
 * Clone the repo
 * Run bundle install
-* Run `rake db:setup:all`
+* Run `rake db:setup`
 * To generate some dummy data : Run `rake setup_data`
     Optionally, clear the data with `rake clear_data`
 
@@ -23,3 +22,4 @@ Roles : Event Organiser, Venue Owner and Normal Users.
 - Momentjs : To format date in javascript
 - JQuery Chosen : To enhance select boxes
 - DateTime Picker : For choosing date and time
+- Bootstrap 4.4.1
