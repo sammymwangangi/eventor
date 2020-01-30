@@ -25,7 +25,7 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <a class="navbar-brand" href="/events">
-        <%= image_tag('eventify_logo2.png', width: "95px", class: "img-responsive")  %>
+        <h4>EVENTOR</h4>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,10 @@
             <%end%>  
           </li>
           <li class="nav-item  mr-4">
-              <a href="#">Service Providers <sup><span class="badge badge-info rounded-circle">4</span></sup></a>
+              <%= link_to services_path do %>
+                Services
+              <%end%>
+              
           </li>
           <li class="nav-item  mr-4">
             <!-- Button trigger modal -->

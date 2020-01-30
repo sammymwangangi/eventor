@@ -6,9 +6,9 @@ class Ability
     if user.nil?
         can :read, Event
         can :read, Venue
-        
+
     elsif user.role? "admin"
-        can :manage, :all 
+        can :manage, :all
 
     elsif user.role? "organizer"
         can [:update, :destroy], Event do |event|
@@ -34,11 +34,12 @@ class Ability
             booking.try(:user) == user
         end
         can :read, Event
-        can [:create, :read], VenueBooking 
+        can [:create, :read], VenueBooking
 
     elsif user.role? "user"
         can :read, Event
         can :read, Venue
+        can :read, Service
         can :read, VenueBooking
         can :create, EventBooking
         can :my_bookings, EventBooking

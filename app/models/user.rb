@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
 	has_many :events
   has_many :venues
+  has_many :services
 	has_many :permissions
 	has_many :roles, through: :permissions
   # Include default devise modules. Others available are:
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   after_create :assign_user_role
-  
+
   def role?(role)
   	self.roles.pluck(:name).include? role
   end

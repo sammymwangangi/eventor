@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :services
+
+  get 'providers/index'
+
   resources :event_bookings
+
   devise_for :users, controllers: {registrations: 'registrations'}
   # devise_for :users do
   #   get '/users/sign_out' => 'devise/sessions#destroy'

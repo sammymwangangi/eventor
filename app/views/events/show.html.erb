@@ -64,9 +64,9 @@
 			<b><%= @event.description %> </b><br/>
 			<b>Venue : </b> <%= link_to "#{@event.venue.name}", venue_path(@event.venue) %> <br>
 			<b>Starting from :</b> <%= @event.start_datetime.strftime("%d %B %Y - %I:%M %P ") %> <br/>
-			<b>Ending at :</b> <%= @event.end_datetime.strftime("%d %B %Y - %I:%M %P ") %>
+			<b>Ending at :</b> <%= @event.end_datetime.strftime("%d %B %Y - %I:%M %P ") %> <br>
 
-			<div >
+			<div>
 			<% if can? :create, @event_booking %>
 			<div class="well" style="width:50%">
 				
@@ -86,11 +86,11 @@
 			</div>
 			<% end %>
 
-			<div>
+			<div class="mt-2">
 				
 				<h3>
 					Tickets Left:
-					<span class="alert alert-info"><%= @event.tickets_left %></span>	
+					<button class="btn btn-info btn-lg"><%= @event.tickets_left %></button>
 				</h3>
 			</div>
 		</div>
