@@ -1,0 +1,2 @@
+module ServicesBookingsHelper
+end

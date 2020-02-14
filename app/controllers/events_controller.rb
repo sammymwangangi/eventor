@@ -9,13 +9,13 @@ class EventsController < ApplicationController
 		if params[:search]
 			@events = Event.search(params[:search])
 		else
-			@events = Event.all 
+			@events = Event.all
 		end
 	end
 
 	def new
 		@event = Event.new
-		
+
 	end
 
 	def create
@@ -24,7 +24,11 @@ class EventsController < ApplicationController
 		@event.user_id = current_user.id
 
 		if @event.save
-			@venue_booking = VenueBooking.create(start_datetime: @event.start_datetime, end_datetime: @event.end_datetime, venue_id: @event.venue_id, event_id: @event.id)
+			@venue_booking = VenueBooking.create(
+			start_datetime: @event.start_datetime,
+			end_datetime: @event.end_datetime,
+			venue_id: @event.venue_id,
+			event_id: @event.id)
 			redirect_to events_path, notice: "Successfully added!"
 		else
 			render action: "new"
@@ -44,7 +48,7 @@ class EventsController < ApplicationController
 	def edit
 		@event = Event.find(params[:id])
 	end
-	
+
 	def update
 		@event = Event.find(params[:id])
 		if @event.update_attributes(event_params)
@@ -57,7 +61,7 @@ class EventsController < ApplicationController
 	def destroy
 		@event = Event.find(params[:id])
 		@event.destroy
-		redirect_to events_path, notice: "Deleted successfully!" 
+		redirect_to events_path, notice: "Deleted successfully!"
 	end
 
 	def my_events

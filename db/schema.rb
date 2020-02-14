@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200130063543) do
+ActiveRecord::Schema.define(version: 20200214100100) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -77,9 +77,18 @@ ActiveRecord::Schema.define(version: 20200130063543) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "service_bookings", force: :cascade do |t|
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.integer  "service_id",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "services", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
+    t.float    "price",      limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 20200130063543) do
 
   create_table "venues", force: :cascade do |t|
     t.string   "name",        limit: 255
+    t.float    "price",      limit: 24
     t.text     "address",     limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :services
 
+  resources :service_bookings
+
   get 'providers/index'
 
   resources :event_bookings
@@ -10,8 +12,8 @@ Rails.application.routes.draw do
   # devise_for :users do
   #   get '/users/sign_out' => 'devise/sessions#destroy'
   # end
-  
-  scope "/admin" do 
+
+  scope "/admin" do
     resources :users
   end
 
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   resources :venue_bookings
 
   get 'events/my_events'
-  resources :events do 
+  resources :events do
     resources :event_bookings
   end
   resources :categories

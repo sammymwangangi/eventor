@@ -4,6 +4,7 @@ class CreateVenues < ActiveRecord::Migration
       t.string :name
       t.integer :city_id
       t.text :address
+      t.float :price
 
       t.timestamps null: false
     end

@@ -1,14 +1,14 @@
 class VenuesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
 	load_and_authorize_resource
-	
+
 	def index
-		@venues = Venue.all 
+		@venues = Venue.all
 		@categories = Category.all
 		if params[:search]
 			@venues = Venue.search(params[:search])
 		else
-			@venues = Venue.all 
+			@venues = Venue.all
 		end
 	end
 
@@ -47,12 +47,12 @@ class VenuesController < ApplicationController
 	def destroy
 		@venue = Venue.find(params[:id])
 		@venue.destroy
-		redirect_to venues_path, notice: "Deleted successfully!" 
+		redirect_to venues_path, notice: "Deleted successfully!"
 	end
 
 	private
 
 	def venue_params
-		params[:venue].permit(:name, :locality_id, :address, :user_id, :seats, :avatar)
+		params[:venue].permit(:name, :locality_id, :address, :user_id, :price, :seats, :avatar)
 	end
 end

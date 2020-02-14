@@ -1,0 +1,49 @@
+<ul class="nav nav-tabs" >
+
+  <% if current_page? "/events"%>
+  <li class="nav-item">
+    <a class="nav-link active" href="/events">Home</a>
+  </li>
+	<% else %>
+  <li class="nav-item">
+    <a class="nav-link" href="/events">Home</a>
+  </li>
+  <%end%>
+
+
+
+	<% if can? :my_events, Event.new %>
+	   <% if current_page? "/events/my_events"%>
+      <li class="nav-item">
+        <a class="nav-link active" href="/events/my_events">My Events</a>
+      <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="/events/my_events">My Events</a>
+      </li>
+      <%end%>
+
+	<%end%>
+
+	<% if can? :my_services, Service.new %>
+	   <% if current_page? "/services/my_services"%>
+      <li class="nav-item">
+        <a class="nav-link active" href="/services/my_services">My Services</a>
+      <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="/services/my_services">My Services</a>
+      </li>
+      <%end%>
+
+	<%end%>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Categories
+    </a>
+    <div class="dropdown-menu">
+      <% @categories.each do |category| %>
+        <%= link_to category.name.capitalize, category_path(category), :class => "dropdown-item" %>
+      <% end %>
+    </div>
+  </li>
+</ul>

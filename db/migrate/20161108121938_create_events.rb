@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :venue_id
+      t.integer :service_id
       t.integer :city_id
       t.datetime :start_datetime
       t.datetime :end_datetime
