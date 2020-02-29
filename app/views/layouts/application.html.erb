@@ -77,8 +77,8 @@
 
         <ul class="navbar-nav ml-auto">
           <% if !user_signed_in? %>
-            <li class="nav-item mr-4"><%= link_to "Login", new_user_session_path %></li>
-            <li class="nav-item mr-4"><%= link_to "Register", new_user_registration_path %></li>
+            <li class="nav-item mr-4"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
+            <li class="nav-item mr-4"><%= link_to "Register", new_user_registration_path, class: "nav-link" %></li>
           <% else %>
 
             <li class="nav-item dropdown">
