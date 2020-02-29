@@ -1,12 +1,81 @@
-<p>
-  <strong>Name:</strong>
-  <%= @service.name %>
-</p>
- 
-<p>
-  <strong>Description:</strong>
-  <%= @service.description %>
-</p>
 
-<%= link_to 'Edit', edit_service_path(@service) %> |
-<%= link_to 'Back', services_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="display-4"><%= @service.name %></h1>
+      <h1 class="display-6">Ksh.<%= @service.price %></h1>
+      <p class="lead"> <%= @service.description %></p>
+      <hr class="my-4">
+      <%= link_to 'Edit', edit_service_path(@service),  class:"btn btn-info btn-lg" %> |
+      <%= link_to 'Back', services_path,  class:"btn btn-secondary btn-lg" %>
+    </div>
+    <div class="col-md-6">
+      <div id="calendar"></div>
+    </div>
+  </div>
+
+  	<div class="row">
+
+		<div class="col-md-8">
+			<div class="page-header">
+					<h3>Bookings</h3>
+			</div>
+			<table class="table table-hover table-bordered">
+				<thead class="thead-light">
+					<tr>
+						<th>#</th>
+						<th>Service</th>
+						<th>Starts on</th>
+						<th>Ends at</th>
+					</tr>
+				</thead>
+				<% @service.service_bookings.each_with_index do |booking, i| %>
+				<tbody>
+					<tr>
+						<td>
+							<%= i +=1 %>
+						</td>
+						<td>
+							<% if !booking.event.nil? %>
+								<%= booking.event.name.capitalize %>
+							<% else %>
+								<p>*Booked by serviceOwner*</p>
+							<%end%>
+						</td>
+						<td><%= booking.start_datetime.strftime("%d %B %Y - %I:%M %P ") %></td>
+						<td><%= booking.end_datetime.strftime("%d %B %Y - %I:%M %P ") %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+		</div>
+
+		<div class="col-md-4">
+			<% if can? :update, @service %>
+				<div class="page-header">
+					<h3>Add a Booking</h3>
+				</div>
+				<div class="well">
+				<%= form_for @service_booking do |f| %>
+
+					<%= f.hidden_field :service_id, value: @service.id %>
+
+					<%= f.label "Starting at" %>
+				<%= f.text_field :start_datetime, id: "startDatetime" %> <br>
+
+				<%= f.label "Ending at" %>
+				<%= f.text_field :end_datetime, id: "endDatetime" %> <br/>
+
+				<!-- f.datetime_select :end_datetime, ampm: true, minute_step: 15  -->
+
+					<%= f.submit "Book", class: "btn btn-primary"%>
+
+				<% end %>
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+
+	<%= link_to "Back", services_path %>
+</div>

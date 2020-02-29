@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSRF Token -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui@3.0.0-rc.0/dist/css/coreui.min.css">
+
+    <script src="https://unpkg.com/@coreui/coreui@3.0.0-rc.0/dist/js/coreui.min.js"></script>
+</head>
+<body>
+
+    <%= render 'layouts/admin/sidebar' %>
+
+    <!-- Page content holder -->
+    <div class="page-content" id="content">
+        <div class="header">
+            <!-- First Nav -->
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="#">Action 1</a>
+                                <a class="dropdown-item" href="#">Action 2</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+
+        <div class="p-5">
+
+            <div>
+                <card-group deck class="m4">
+                    <card class="text-center shadow rounded">
+                        <card-text>
+                            <i class="fa fa-user fa-2x mr-3 text-primary fa-fw"></i>
+                        </card-text>
+
+                        <card-title>Leads</card-title>
+
+                        <card-body>
+
+                            <card-text class="text-left">
+                                Add a new lead or search through your existing leads of customers looking to purchase properties.
+                            </card-text>
+
+                            <button variant="primary">Add Lead</button>
+                        </card-body>
+                    </card>
+
+                    <card class="text-center shadow rounded">
+                        <card-text>
+                            <i class="fa fa-users fa-2x mr-3 text-primary fa-fw"></i>
+                        </card-text>
+
+                        <card-title>Owners</card-title>
+
+                        <card-body>
+
+                            <card-text class="text-left">
+                                Search for owners who could potential property sellers
+                            </card-text>
+
+                            <button variant="primary">Find Owners</button>
+                        </card-body>
+                    </card>
+
+                    <card class="text-center shadow rounded-lg">
+                        <card-text>
+                            <i class="fa fa-home fa-2x mr-3 text-primary fa-fw"></i>
+                        </card-text>
+
+                        <card-title>Search Market Place Properties</card-title>
+
+                        <card-body>
+
+                            <card-text class="text-left">
+                                Search properties through Passiviti's search and analytical tools.
+                            </card-text>
+
+                            <button variant="primary">Search Properties</button>
+                        </card-body>
+                    </card>
+                </card-group>
+
+                <card-group deck>
+                    <card class="text-center shadow rounded">
+                        <card-text>
+                            <i class="fa fa-warehouse fa-2x mr-3 text-primary fa-fw"></i>
+                        </card-text>
+
+                        <card-title>Add or View Your Properties</card-title>
+
+                        <card-body>
+
+                            <card-text class="text-left">
+                                List your own properties <br>
+                                You control sharing these properties on Mashvisor or keeping them private.
+                            </card-text>
+
+                            <button variant="primary">Add Property</button>
+                        </card-body>
+                    </card>
+
+                    <card class="text-center shadow rounded">
+                        <card-text>
+                            <i class="fa fa-key fa-2x mr-3 text-primary fa-fw"></i>
+                        </card-text>
+
+                        <card-title>Grant Licences</card-title>
+
+                        <card-body>
+
+                            <card-text class="text-left">
+                                Provide your leads with Mashvisor's powerful property analytics tools <br>
+
+                                You have 15 licenses available to grant to leads.
+                            </card-text>
+
+                            <button variant="primary">Grant Licence</button>
+                        </card-body>
+                    </card>
+
+                    <card class="text-center shadow rounded">
+                        <card-text>
+                            <i class="fa fa-comment fa-2x mr-3 text-primary fa-fw"></i>
+                        </card-text>
+
+                        <card-title>Contact Us</card-title>
+
+                        <card-body>
+
+                            <card-text class="text-left">
+                                Don't know how to start with Mashboard or have a really cool idea that you would like us to add? We would love to hear from you."
+                            </card-text>
+
+                            <button variant="primary">Start Today</button>
+                        </card-body>
+                    </card>
+                </card-group>
+            </div>
+        </div>
+
+    </div>
+    <!-- End content -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js" integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9&#43;4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb" crossorigin="anonymous"></script>
+</body>
+</html>

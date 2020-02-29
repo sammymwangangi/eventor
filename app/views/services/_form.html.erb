@@ -1,32 +1,40 @@
-<%= form_for @service do |f| %>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <%= form_for @service,  html: {class: "form-horizontal"} do |f| %>
 
-  <% if @service.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@service.errors.count, "error") %> prohibited
-        this service from being saved:
-      </h2>
-      <ul>
-        <% @service.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <% if @service.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@service.errors.count, "error") %> prohibited
+              this service from being saved:
+            </h2>
+            <ul>
+              <% @service.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="form-group">
+          <%= f.label :name %>
+        <%= f.text_field :name,class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :price %>
+        <%= f.number_field :price,class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+        <%= f.text_area :description,class: "form-control" %>
+        </div>
+
+        <%= f.submit "Add Service", class: "btn btn-success" %>
+
+      <% end %>
     </div>
-  <% end %>
-
-  <p class="text-lead">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-
-
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
-<% end %>
+  </div>
+</div>

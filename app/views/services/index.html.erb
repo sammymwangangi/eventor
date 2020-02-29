@@ -13,10 +13,10 @@
 		</div>
 		<div class="text-center">
 			<h4><% if can? :my_events, Event.new %>
-				Goto <%= link_to "My Events", events_my_events_path %>
+				View <%= link_to "All Services", services_path %>
 				<%end%>
-				<% if can? :create, Event.new %>
-					or <%= link_to "Create Event", new_event_path, class: "btn btn-info" %>
+				<% if can? :create, Service.new %>
+					or <%= link_to "Create Service", new_service_path, class: "btn btn-info" %>
 				<% end %>
 			</h4>
 
@@ -65,8 +65,8 @@
               </div>
             </div>
 
-            <button class="btn btn-sm btn-secondary disabled"> <small><%= venue.seats %> seats</small></button>
-            <a href="/venues/<%= "#{venue.id}" %>" class="btn btn-danger btn-sm " role="button" style="border: none; color: white;">Book Venue</a>
+
+            <a href="/services/<%= "#{service.id}" %>" class="btn btn-danger btn-sm " role="button" style="border: none; color: white;">Book Service</a>
           </div>
         </div>
       </div>

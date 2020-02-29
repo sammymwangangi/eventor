@@ -1,7 +1,7 @@
 
 <div class="container">
 <div class="page-header">
-	<h3>Add a new Venue</h3>	
+	<h3>Add a new Venue</h3>
 </div>
 
 
@@ -15,24 +15,29 @@
 				<% @venue.errors.full_messages.each do |msg| %>
 				<li><%= msg%></li>
 				<% end %>
-			</ul>			
-		</div>	
+			</ul>
+		</div>
 	<% end %>
-	
+
 	<div class="form-group">
 		<%= f.label :name %>
 	<%= f.text_field :name,class: "form-control" %>
 	</div>
-	
+
 	<div class="form-group">
-	<%= f.label :avatar %> 
+		<%= f.label :price %>
+	<%= f.number_field :price,class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+	<%= f.label :avatar %>
 	<%= f.file_field :avatar,class: "form-control" %>
 	</div>
 
 	<div class="form-group">
 	<%= f.label :address %>
-	<%= f.text_area :address,class: "form-control" %> 
-	</div>	
+	<%= f.text_area :address,class: "form-control" %>
+	</div>
 
 	<div class="form-group">
 	<%= f.label :locality_id %>
@@ -41,7 +46,7 @@
 
 	<div class="form-group">
 	<%= f.label "Seats(if any)" %>
-	<%= f.number_field :seats,class: "form-control" %> 
+	<%= f.number_field :seats,class: "form-control" %>
 	</div>
 
 	<%= f.submit "Add Venue", class: "btn btn-success" %>

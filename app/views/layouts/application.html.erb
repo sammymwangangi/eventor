@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag "https://www.google.com/jsapi" %>
-  
+
   <%= csrf_meta_tags %>
 </head>
 
@@ -18,13 +18,13 @@
 <%else%>
   <body >
 <%end%>
-  
+
 
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
-      <a class="navbar-brand" href="/events">
+      <a class="navbar-brand" href="/">
         <h4>EVENTOR</h4>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,26 +35,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent" >
         <ul class="navbar-nav mr-auto">
           <li class="nav-item mr-4">
-            <%= link_to events_path do%>
-              Events <sup><span class="badge badge-info rounded-circle"><%= Event.all.size %></span></sup>
+            <%= link_to events_path, class: "nav-link" do%>
+              Events <sup><span class="badge badge-warning rounded-circle"><%= Event.all.size %></span></sup>
             <%end%>
           </li>
           <li class="nav-item  mr-4">
-            <%= link_to venues_path do %>
-              Venues <sup><span class="badge badge-info rounded-circle"><%= Venue.all.size %></span></sup>
-            <%end%>  
+            <%= link_to venues_path, class: "nav-link" do %>
+              Venues <sup><span class="badge badge-warning rounded-circle"><%= Venue.all.size %></span></sup>
+            <%end%>
           </li>
           <li class="nav-item  mr-4">
-              <%= link_to services_path do %>
-                Services
+              <%= link_to services_path, class: "nav-link" do %>
+                Services <sup><span class="badge badge-warning rounded-circle"><%= Service.all.size %></span></sup>
               <%end%>
-              
-          </li>
-          <li class="nav-item  mr-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#infoModal">
-              About
-            </button>
           </li>
 
           <% if notice %>
@@ -81,7 +74,7 @@
 
         </ul>
 
-        
+
         <ul class="navbar-nav ml-auto">
           <% if !user_signed_in? %>
             <li class="nav-item mr-4"><%= link_to "Login", new_user_session_path %></li>

@@ -5,7 +5,7 @@
 	</ol>
 </nav>
 <div class="container">
-	
+
 	<h2><%= @event.name %><sup> <small> <em> <%= @event.status %></em></small></sup></h2>
 
 	<div class="row">
@@ -38,7 +38,7 @@
 			      <div class="carousel-caption">
 			        Image 2
 			      </div>
-			    </div>  
+			    </div>
 			  </div>
 
 			  <!-- Controls -->
@@ -51,8 +51,8 @@
 				<span class="sr-only">Next</span>
 			  </a>
 			</div>
-			<!-- carousel ends here -->		
-		</div> 
+			<!-- carousel ends here -->
+		</div>
 
 		<div class="col-md-5">
 			<% if params[:booking_id] %>
@@ -67,38 +67,44 @@
 			<b>Ending at :</b> <%= @event.end_datetime.strftime("%d %B %Y - %I:%M %P ") %> <br>
 
 			<div>
-			<% if can? :create, @event_booking %>
-			<div class="well" style="width:50%">
-				
-				<h3 style="margin-top:5px">Buy Tickets</h3>
-				<b>Entry fee :</b> KSH.<%= @event.entry_fee %> <br/>
-				<%= form_for([@event,@event_booking]) do |f|  %>
-					
-					<% @event_booking.tickets = 0 %>
-					<%= f.label "Choose no of tickets" %>
-					<%= f.select :tickets, [1,2,3,4,5,6,7,8,9,10] %> 
-				
-					<% @event_booking.total_price = @event.entry_fee * @event_booking.tickets %>
-				 
-					<%= f.submit "Book" , class: "btn btn-danger"%> <br>
-					
-				<% end %>	
-			</div>
-			<% end %>
+				<% if can? :create, @event_booking %>
+				<div class="well" style="width:50%">
 
-			<div class="mt-2">
-				
-				<h3>
-					Tickets Left:
-					<button class="btn btn-info btn-lg"><%= @event.tickets_left %></button>
-				</h3>
-			</div>
+					<h3 style="margin-top:5px">Buy Tickets</h3>
+					<b>Entry fee :</b> KSH.<%= @event.entry_fee %> <br/>
+					<%= form_for([@event,@event_booking]) do |f|  %>
+
+						<% @event_booking.tickets = 0 %>
+						<%= f.label "Choose no of tickets" %>
+						<%= f.select :tickets, [1,2,3,4,5,6,7,8,9,10] %>
+
+						<% @event_booking.total_price = @event.entry_fee * @event_booking.tickets %>
+
+						<%= f.submit "Book" , class: "btn btn-danger"%> <br>
+
+					<% end %>
+				</div>
+				<% end %>
+
+				<div class="mt-2">
+
+					<h3>
+						Tickets Left:
+						<button class="btn btn-info btn-lg"><%= @event.tickets_left %></button>
+					</h3>
+					 <% if !user_signed_in? %>
+							<div class="alert alert-warning" role="alert">
+								<strong>You must be signed in to Book this event!</strong>
+							</div>
+						<% end %>
+
+				</div>
 		</div>
 		</div>
 
-		
+
 	</div>
-	
+
 	<div class="row">
 		<div class="col-md-8">
 			<% if can? :update, @event.event_bookings.first %>
@@ -126,7 +132,7 @@
 						<td><%= booking.tickets %></td>
 						<td>KSH. <%= booking.total_price %></td>
 						<% 	i += 1
-							sum += booking.total_price 
+							sum += booking.total_price
 							tickets += booking.tickets %>
 					</tr>
 					<%end %>
@@ -140,9 +146,8 @@
 				</tbody>
 			</table>
 			<% end %>
-					
+
 		</div>
 	</div>
-	
-</div>
 
+</div>

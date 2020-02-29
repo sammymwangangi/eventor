@@ -1,0 +1,116 @@
+/* .jumbotron{
+    background-image: url("/images/banner1_bg.jpg");
+} */
+#jumbo-bg{
+    background-image:
+    linear-gradient(to bottom, rgba(186, 103, 224, 0.52), rgba(106, 19, 117, 0.73)),
+    url("/images/banner1_bg.jpg");
+    background-size: cover;
+}
+.jumbotron{
+    height: 100vh;
+}
+
+hr.hr-text {
+    position: relative;
+      border: none;
+      height: 1px;
+      background: #999;
+  }
+
+hr.hr-text::before {
+    content: attr(data-content);
+    display: inline-block;
+    background: #fff;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #999;
+    border-radius: 30rem;
+    padding: 0.2rem 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+    /*
+    *
+    * ==========================================
+    * CUSTOM UTIL CLASSES
+    * ==========================================
+    *
+    */
+
+    .vertical-nav {
+        min-width: 17rem;
+        width: 17rem;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s;
+        }
+
+        .page-content {
+        width: calc(100% - 17rem);
+        margin-left: 17rem;
+        transition: all 0.4s;
+        }
+
+        /* for toggle behavior */
+
+        #sidebar.active {
+        margin-left: -17rem;
+        }
+
+        #content.active {
+        width: 100%;
+        margin: 0;
+        }
+
+        @media (max-width: 768px) {
+        #sidebar {
+            margin-left: -17rem;
+        }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+
+        #content {
+            width: 100%;
+            margin: 0;
+        }
+
+        #content.active {
+            margin-left: 17rem;
+            width: calc(100% - 17rem);
+        }
+        }
+
+        /*
+        *
+        * ==========================================
+        * FOR DEMO PURPOSE
+        * ==========================================
+        *
+        */
+
+        body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        }
+
+        .separator {
+        margin: 3rem 0;
+        border-bottom: 1px dashed #fff;
+        }
+
+        .text-uppercase {
+        letter-spacing: 0.1em;
+        }
+
+        .text-gray {
+        color: #aaa;
+        }
