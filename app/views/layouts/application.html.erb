@@ -49,6 +49,11 @@
                 Services <sup><span class="badge badge-warning rounded-circle"><%= Service.all.size %></span></sup>
               <%end%>
           </li>
+          <li class="nav-item  mr-4">
+              <%= link_to expenses_path, class: "nav-link" do %>
+                Expense Tracker
+              <%end%>
+          </li>
 
           <% if notice %>
             <li class="nav-item">

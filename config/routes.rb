@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
+  # get 'expenses/index'
+
   resources :services
+  resources :expenses
 
   resources :service_bookings
 
