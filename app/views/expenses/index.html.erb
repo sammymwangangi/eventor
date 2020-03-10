@@ -1,4 +1,43 @@
 <div class="container p-4">
+	<h2>INCOME (Events Booked)</h2>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>User</th>
+				<th>Email</th>
+				<th>Tickets Booked</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% 	i = 1
+				sum = 0
+				tickets = 0 %>
+			<% @event_bookings.each do |booking| %>
+			<tr>
+				<td><%= i %></td>
+				<td><%= booking.user.username %></td>
+				<td><%= booking.user.email %></td>
+				<td><%= booking.tickets %></td>
+				<td>KSH. <%= booking.total_price %></td>
+				<% 	i += 1
+					sum += booking.total_price
+					tickets += booking.tickets %>
+			</tr>
+			<%end %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>Total Tickets : <b><%= tickets %></b></td>
+				<td><b>KSH. <%= sum %></b></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="container p-4">
 	<h2>Expense Tracking</h2>
 	<table class="table table-bordered table-responsive">
 	  <thead>
@@ -16,7 +55,7 @@
 	      <th scope="row">1</th>
 	      <td>03-03-2020</td>
 	      <td class="text-wrap">xosaoiasd saifusa asiusa iauu asciahscpic cpicjffdb9odi cediueweb vvev</td>
-	      <td>1000</td>
+	      <td><%= sum %></td>
 	      <td>550</td>
 	      <td>450</td>
 	    </tr>
@@ -24,16 +63,17 @@
 	      <th scope="row">2</th>
 	      <td>10-03-2020</td>
 	      <td class="text-break">efskoiefew fiufreife bfiuf rfierufr eeriur irujrv breiu dhdsicpjdvd </td>
-	      <td>4500</td>
+	      <td><%= sum %></td>
 	      <td>500</td>
 	      <td>4000</td>
 	    </tr>
 	    <tr>
 	      <td colspan="3" class="text-uppercase">Total</td>
-	      <td>5500</td>
+	      <td><%= sum %></td>
 	      <td>1050</td>
 	      <td>4450</td>
 	    </tr>
 	  </tbody>
 	</table>
 </div>
+
