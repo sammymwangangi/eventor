@@ -4,7 +4,6 @@ class ExpensesController < ApplicationController
 	  	@venues = Venue.all
 	  	@event_bookings = EventBooking.all
 	  	@venue_bookings = VenueBooking.all
-	  	@venue_booking = VenueBooking.new
 	end
 
 	private
