@@ -42,69 +42,54 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>User</th>
-				<th>Email</th>
-				<th>Tickets Booked</th>
-				<th>Price</th>
+				<th>Start Time</th>
+				<th>End Time</th>
+				<th>Venue Price</th>
 			</tr>
 		</thead>
 		<tbody>
-					<% @venue_bookings.each_with_index do |booking| %>
-					<tr>						<td>
-							kjh
-						</td>
-						<td><%= booking.start_datetime.strftime("%d %B %Y - %I:%M %P ") %></td>
-						<td><%= booking.end_datetime.strftime("%d %B %Y - %I:%M %P ") %></td>
-						<td><%= booking.venue.price %></td>
-					</tr>
-					<% end %>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<!-- <td><b>KSH.</b></td> -->
-					</tr>
+			<% sum2 = 0 %>
+			<% @venue_bookings.each_with_index do |booking| %>
+			<tr>
+				<td><%= booking.start_datetime.strftime("%d %B %Y - %I:%M %P ") %></td>
+				<td><%= booking.end_datetime.strftime("%d %B %Y - %I:%M %P ") %></td>
+				<td><%= booking.venue.price %></td>
+				<% sum2 += booking.venue.price %>
+			</tr>
+			<% end %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><em>TOTAL:  </em><b>KSH. <%= sum2 %></b></td>
+			</tr>
 		</tbody>
 	</table>
 </div>
 
 <div class="container p-4">
 	<h2>Expense Tracking</h2>
-	<table class="table table-bordered table-responsive">
+	<table class="table table-bordered">
 	  <thead>
 	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">Date</th>
-	      <th scope="col">Description</th>
-	      <th scope="col">Income</th>
-	      <th scope="col">Expense</th>
+	      <th scope="col">Total Income</th>
+	      <th scope="col">Total Expenses</th>
 	      <th scope="col">Balance</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr>
-	      <th scope="row">1</th>
-	      <td>03-03-2020</td>
-	      <td class="text-wrap">xosaoiasd saifusa asiusa iauu asciahscpic cpicjffdb9odi cediueweb vvev</td>
 	      <td><%= sum %></td>
-	      <td>550</td>
-	      <td>450</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>10-03-2020</td>
-	      <td class="text-break">efskoiefew fiufreife bfiuf rfierufr eeriur irujrv breiu dhdsicpjdvd </td>
-	      <td><%= sum %></td>
-	      <td>500</td>
-	      <td>4000</td>
-	    </tr>
-	    <tr>
-	      <td colspan="3" class="text-uppercase">Total</td>
-	      <td><%= sum %></td>
-	      <td>1050</td>
-	      <td>4450</td>
+	      <td><%= sum2 %></td>
+	      	<td>
+	      		<% if sum2 > sum %>
+	      			<p class="text-danger"><%= sum - sum2 %></p>
+	      		<% else %>
+	      			<%= sum - sum2 %>
+	      		<% end %>
+	      		<% if sum2 > sum %>
+	      			<p class="alert alert-warning" role="alert">You need to generate more income</p>
+	      		<% end %>
+	      	</td>
 	    </tr>
 	  </tbody>
 	</table>
